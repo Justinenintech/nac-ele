@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/comm/cartesian.py" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/comm/config.py" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/comm/report.py" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/comm/requests.py" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/comm/requests.py" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/comm/utils.py" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/config.ini" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/split/split_test_201210.py" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/test_case/test_profit_201210_1.py" charset="GBK" />
+  </component>
+</project>

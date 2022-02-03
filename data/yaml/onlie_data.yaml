@@ -1,0 +1,65 @@
+#lotteryCode:
+#  onl_code: [ 16811x5,168jsk3,168jsk8,ah11x5,ahk3,aly5fc,alyffc,azxy10,
+#              azxy20,azxy5,azxy8,bjpk10,ccqqffc,cctx10fc,cctx5fc,cctxffc,
+#              cqssc,fhtxpk10,gd11x5,gdkl10f,ggffc,ggffc5f,gjtx5fc,gjtxffc,
+#              gxk3,hb11x5,hlj11x5,hljssc,hn11x5,hnk3,hubk3,jlk3,jsft,jsk3,
+#              jssc,jssm,jsssc,js11x5,jx11x5,sd11x5,sgpk10,sh11x5,tmffc,txffc,
+#              xjssc,xs11x5,zj11x5,jxk3,gsk3,shk3,nmks,bjk3,gzk3,hebk3,sx11x5,
+#              hunkl10f,tjkl10f,cqkl10f,hnffc,cctxpk10,cctx5fpk10,gjtxpk10,
+#              ccqq5fc,txwfc,aly10fc,ggffc10f,tx10fc,cctx3fc,ggffc3f,cctx2fc,
+#              cctx2fc,cctx2fc,cctx2fc,cctx2foc,ggffc2f,tx2fc,btcffc,htffc,jlffc,
+#              jsxyst,hn1fc,tj360as1f,tj360ffc,168xyft,fhjlssc,ht5fc,llssc,jsxyft,
+#              hn5fc,tj3605fc,tj360as5f,MOPK10,ht10fc,168jssc,tw5f3d,twklb,twpc28,
+#              twpk10,twssc,twbg,hl30s,tyo1d5fc,tyo1d5fkl8,168jsft,syssc,twdlt,twjc539,
+#              twwlc,dlt,f3d,lhc,plw,qlc,qxc,ssq,syssc1 ]
+#  ffc: [ hn1fc,txffc,ggffc,tmffc,fhtxpk10,gjtxpk10,hnffc,tj360ffc,ccqqffc,tj360as1f,gjtxffc,jsxyst,alyffc,cctxffc,cctxpk10,htffc,jlffc,btcffc ]
+#  tfc: [ aly10fc,ggffc10f,tx10fc,ht10fc,cctx10fc ]
+#  _5fc: [ cctx5fc,ggffc5f,aly5fc,gjtx5fc,ccqq5fc,txwfc,ht5fc,hn5fc,tj3605fc,tj360as5f,cctx5fpk10,tw5f3d,twpc28,twssc,twpk10,twklb,twbg,llssc,azxy10,sgpk10,168xyft,jsxyft,MOPK10,azxy8,azxy5,azxy20 ]
+#  #  _5fc: [168xyft,jsxyft]
+#  3fc: [ tm3fc,cctx3fc,ggffc3f ]
+#  2fc: [ cctx2fc,cctx2foc,ggffc2f,tx2fc ]
+#  tw_ssc: [ tw5f3d,twpc28,twssc,twpk10,twklb,twbg ]
+#  jsc: [ jssc,jsft,jssm,168jsft,168jssc,16811x5,168jsk3,168jsk8 ]
+
+
+
+[['双' '大' '小']
+ ['单' '双' '大']
+ ['双' '大' '小']
+ ['单' '双' '小']
+ ['单' '大' '大']
+ ['单' '双' '小']
+ ['大' '大' '小']
+ ['单' '单' '双']
+ ['双' '双' '双']
+ ['双' '小' '小']
+ ['单' '大' '小']
+ ['单' '大' '小']
+ ['单' '双' '大']
+ ['单' '大' '小']
+ ['大' '小' '小']
+ ['单' '双' '小']
+ ['单' '单' '大']
+ ['单' '大' '小']
+ ['双' '双' '大']
+ ['双' '大' '小']
+ ['单' '双' '小']
+ ['大' '大' '大']
+ ['单' '大' '小']
+ ['单' '双' '双']
+ ['单' '单' '单']
+ ['双' '大' '小']
+ ['单' '小' '小']
+ ['双' '双' '小']
+ ['双' '大' '大']
+ ['小' '小' '小']
+ ['单' '双' '大']
+ ['单' '双' '大']
+ ['单' '双' '大']
+ ['双' '大' '小']
+ ['单' '大' '小']
+ ['双' '大' '小']
+ ['单' '单' '小']
+ ['单' '双' '大']
+ ['单' '双' '小']
+ ['单' '双' '小']]

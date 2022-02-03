@@ -1,0 +1,261 @@
+lotteryCode:
+  onl_code: [ twssc,twpc28,tyo1d5fkl8,hl30s,twbg,twpk10,tyo1d5fc,hn11x5,hljssc,txffc,fhtxpk10,shssl,gjtxffc,ggffc,16811x5,jssc,
+      jssm,cqssc,jsft,cctxffc,ccqqffc,jsssc,bjpk10,tjssc,azxy8,168jsk3,168jsk8,azxy5,azxy20,azxy10,alyffc,sgpk10,tmffc,
+      xjssc,gd11x5,ah11x5,hb11x5,gxk3,gdkl10f,ahk3,hlj11x5,hnk3,hubk3,jx11x5,jlk3,js11x5,jsk3,sd11x5,sh11x5,xs11x5,tm3fc,
+      zj11x5,cqkl10f,hunkl10f,sx11x5,hebk3,tjkl10f,gzk3,bjk3,jxk3,nmks,gsk3,shk3,cctxpk10,hnffc,gjtxpk10,hn1fc,htffc,tj360ffc
+                                                                                                                       168xyft,tj360as1f,jsxyst,168jsft,hn5fc,jsxyft,MOPK10,168jssc,tw5f3d,twklb,jlffc,btcffc,twdlt,lhc,twwlc,dlt,f3d,twjc539,plw
+                                                                                                                                                                                                                                                ssq,fhjlssc,qlc,qxc,syssc,llssc,syssc1,tm5fc ]
+  ffc: [ hn1fc,txffc,ggffc,tmffc,fhtxpk10,gjtxpk10,hnffc,tj360ffc,ccqqffc,tj360as1f,gjtxffc,jsxyst,alyffc,cctxffc,cctxpk10,htffc,jlffc,btcffc ]
+  #  tfc: [ ggffc10f]
+  5fc: [ hn5fc,tw5f3d,twpc28,twssc,twpk10,twklb,twbg,llssc,azxy10,sgpk10,168xyft,jsxyft,MOPK10,azxy8,azxy5,azxy20,tm5fc ]
+  #  tsc: [fhjlssc,syssc,syssc1 ]
+  90s: [ tyo1d5fkl8,tyo1d5fc ]
+  30s: [ hl30s ]
+  3fc: [ tm3fc ]
+  2fc: [ ]
+  10m: [ fhjlssc,syssc,syssc1,ggffc10f ]
+  20m: [ hn11x5,hljssc,cqssc,bjpk10,tjssc,xjssc,gd11x5,ah11x5,hb11x5,gxk3,gdkl10f,ahk3,hlj11x5,hnk3,
+         hubk3,jx11x5,jlk3,sd11x5,sh11x5,xs11x5,zj11x5,cqkl10f,hunkl10f,sx11x5,hebk3,tjkl10f,gzk3,bjk3,jxk3,nmks,gsk3,shk3,js11x5,jsk3 ]
+  30m: [ shssl ]
+  75s: [ jsssc,jssc,jsft,jssm,168jsft,168jssc,16811x5,168jsk3,168jsk8 ]
+  a: [ twdlt,lhc,twwlc,dlt,f3d,twjc539,plw,ssq,qlc,qxc ]
+
+#  js_
+nac:
+  bet_params: { 'lotteryCode': '${lotteryCode}', 'betId': '${betId}',
+                'betTypeCode': '${betTypeCode}','betDetail': '${betDetail}',
+                'bets': '${bets}', 'betAmount': '${betAmount}',
+                'playerCode': '${playerCode}', 'issue': '${issue}',
+                'betIp': '${betIp}','betTime': '${betTime}' }
+
+  bet_double_sided_params: { 'lotteryCode': '${lotteryCode}', 'betId': '${betId}',
+                             'betTypeCode': '${betTypeCode}',
+                             'bets': '${bets}', 'betAmount': '${betAmount}',
+                             'playerCode': '${playerCode}', 'issue': '${issue}',
+                             'betIp': '${betIp}','betTime': '${betTime}','type': '${type_value}' }
+  bet_ip: 113.121.22.121
+  player_code: RcsEagle
+  lot_code: bjpk10
+  #sd11x5  、168jsk3 \16811x5 \txffc \ bjpk10
+  amount: 0.02
+
+detail:
+  nac_10_12_10: '1|2|3'
+  nac_10_12_11: '1|2|3'
+  nac_11_12_10: '1|2|3'
+  nac_11_12_11: '1|2|3'
+  nac_11_12_12: '1|2|3'
+  nac_12_11_13_1: '001'
+  nac_12_11_13_2: '123'
+  nac_12_11_14: '0'
+  nac_12_11_20_1: '001'
+  nac_12_11_20_2: '123'
+  nac_12_11_21: '0'
+  nac_12_11_27_1: '001'
+  nac_12_11_27_2: '123'
+  nac_12_11_28: '0'
+  nac_12_12_10: '1|2|3'
+  nac_12_12_11: '1|2|3'
+  nac_12_12_12: '1|2|3'
+  nac_12_12_13: '1|2|3'
+  nac_12_12_14: '1|2|3'
+  nac_12_12_15: '1|2|3'
+  nac_12_13_11_1: '豹子'
+  nac_12_13_11_2: '顺子'
+  nac_12_13_11_3: '对子'
+  nac_12_13_11_4: '半顺'
+  nac_12_13_11_5: '杂六'
+  nac_12_13_13_1: '豹子'
+  nac_12_13_13_2: '顺子'
+  nac_12_13_13_3: '对子'
+  nac_12_13_13_4: '半顺'
+  nac_12_13_13_5: '杂六'
+  nac_12_13_15_1: '豹子'
+  nac_12_13_15_2: '顺子'
+  nac_12_13_15_3: '对子'
+  nac_12_13_15_4: '半顺'
+  nac_12_13_15_5: '杂六'
+  nac_12_14_10: "大|小,小,单"
+  nac_12_14_11: "大|小,小,单"
+  nac_12_14_12: "大|小,小,单"
+  nac_13_14_10: "大|小,小"
+  nac_13_14_11: "大|小,小"
+  nac_16_10_13: '万|千|百|十|个_0|1|3|4'
+  nac_16_10_14: '万|千|百|十|个_12,13'
+  nac_16_11_10: '1|2|3,1|3|4,2|4|6,3|7|9,6|7|8'
+  nac_16_11_11: '万|千|百|十|个_123'
+  nac_16_11_12: '万|千|百|十|个_16|18|19|20'
+  nac_16_11_13: '万|千|百|十|个_0|1|3|4'
+  nac_16_11_14: '万|千|百|十|个_118,188'
+  nac_16_11_15: '万|千|百|十|个_16|18|19|26'
+  nac_16_11_16: '万|千|百|十|个_0|1|2|3|4|5|6|7|8|9'
+  nac_16_11_17: '万|千|百|十|个_123,124'
+  nac_16_11_18: '万|千|百|十|个_001,134'
+  nac_16_12_10: '0|1|2|3|4,0|1|2|3|4,0|1|2|3|4,0|1|2|3|4,0|1|2|3|4'
+  nac_16_12_11: '万|千|百|十|个_1234,1245,3456,6789'
+  nac_16_12_12: '万|千|百|十|个_0|1|2|3|4|5|6|7|8|9'
+  nac_16_12_14: '万|千|百|十_0|1'
+  nac_16_12_13: "万|千|百|十_0|1|2|3,3|4|5"
+  nac_16_12_15: "万|千|百|十_0|1|2|3,3|4|5"
+  nac_17_10_10_1: '万|千_和'
+  nac_17_10_10_2: '万|千_龙'
+  nac_17_11_10: '万|千_大'
+  nac_18_10_10: '万|千_虎'
+  nac_19_13_10_1: "[{\"numbers\":\"豹子\",\"betPrice\":50}]"
+  nac_19_13_10_2: "[{\"numbers\":\"顺子\",\"betPrice\":50}]"
+  nac_19_13_10_3: "[{\"numbers\":\"对子\",\"betPrice\":50}]"
+  nac_19_13_10_4: "[{\"numbers\":\"半顺\",\"betPrice\":50}]"
+  nac_19_13_10_5: "[{\"numbers\":\"杂六\",\"betPrice\":50}]"
+  nac_19_14_10_1: "[{\"numbers\":\"豹子\",\"betPrice\":50}]"
+  nac_19_14_10_2: "[{\"numbers\":\"顺子\",\"betPrice\":50}]"
+  nac_19_14_10_3: "[{\"numbers\":\"对子\",\"betPrice\":50}]"
+  nac_19_14_10_4: "[{\"numbers\":\"半顺\",\"betPrice\":50}]"
+  nac_19_14_10_5: "[{\"numbers\":\"杂六\",\"betPrice\":50}]"
+  nac_19_15_10_1: "[{\"numbers\":\"豹子\",\"betPrice\":50}]"
+  nac_19_15_10_2: "[{\"numbers\":\"顺子\",\"betPrice\":50}]"
+  nac_19_15_10_3: "[{\"numbers\":\"对子\",\"betPrice\":50}]"
+  nac_19_15_10_4: "[{\"numbers\":\"半顺\",\"betPrice\":50}]"
+  nac_19_15_10_5: "[{\"numbers\":\"杂六\",\"betPrice\":50}]"
+  nac_20_10_10: "[{\"numbers\":\"豹子\",\"betPrice\":50}]"
+  nac_20_10_11: "[{\"numbers\":\"五离\",\"betPrice\":50}]"
+  nac_20_10_12: "[{\"numbers\":\"四张\",\"betPrice\":50}]"
+  nac_20_10_13: "[{\"numbers\":\"葫芦\",\"betPrice\":50}]"
+  nac_20_10_14: "[{\"numbers\":\"顺子\",\"betPrice\":50}]"
+  nac_20_10_15: "[{\"numbers\":\"三张\",\"betPrice\":50}]"
+  nac_20_10_16: "[{\"numbers\":\"两对\",\"betPrice\":50}]"
+  nac_20_10_17: "[{\"numbers\":\"杂牌\",\"betPrice\":50}]"
+  nac_20_10_18: "[{\"numbers\":\"一对\",\"betPrice\":50}]"
+  nac_20_12_10_1: "[{\"numbers\":\"牛1\",\"betPrice\":50},{\"numbers\":\"牛3\",\"betPrice\":50},{\"numbers\":\"牛5\",\"betPrice\":50},{\"numbers\":\"牛7\",\"betPrice\":50},{\"numbers\":\"牛9\",\"betPrice\":50}]"
+  nac_20_12_10_2: "[{\"numbers\":\"牛牛\",\"betPrice\":50}]"
+  nac_20_12_10_3: "[{\"numbers\":\"牛2\",\"betPrice\":50},{\"numbers\":\"牛4\",\"betPrice\":50},{\"numbers\":\"牛6\",\"betPrice\":50},{\"numbers\":\"牛8\",\"betPrice\":50}]"
+  nac_20_12_11: "[{\"numbers\":\"无牛\",\"betPrice\":50}]"
+  nac_20_12_12_1: "[{\"numbers\":\"牛大\",\"betPrice\":50}]"
+  nac_20_12_12_2: "[{\"numbers\":\"牛小\",\"betPrice\":50}]"
+  nac_20_12_12_3: "[{\"numbers\":\"牛单\",\"betPrice\":50}]"
+  nac_20_12_12_4: "[{\"numbers\":\"牛双\",\"betPrice\":50}]"
+  nac_20_11_10_1: "[{\"numbers\":\"和\",\"betPrice\":50}]"
+  nac_20_11_10_2: "[{\"numbers\":\"左闲\",\"betPrice\":50},{\"numbers\":\"右闲\",\"betPrice\":50}]"
+  nac_20_11_11: "[{\"numbers\":\"左单\",\"betPrice\":50},{\"numbers\":\"左双\",\"betPrice\":50},{\"numbers\":\"左小\",\"betPrice\":50}]"
+  nac_31_10_10_1: "6|7|26|27"
+  nac_31_10_10_2: "8|25"
+  nac_31_10_10_3: "9|24"
+  nac_31_10_10_4: "10|23"
+  nac_31_10_10_5: "11|22"
+  nac_31_10_10_6: "12|21"
+  nac_31_10_10_7: "13|20"
+  nac_31_10_10_8: "14|19"
+  nac_31_10_10_9: "15|16|17|18"
+  nac_31_10_11_1: "6|7|26|27"
+  nac_31_10_11_2: "8|25"
+  nac_31_10_11_3: "9|24"
+  nac_31_10_11_4: "10|23"
+  nac_31_10_11_5: "11|22"
+  nac_31_10_11_6: "12|21"
+  nac_31_10_11_7: "13|20"
+  nac_31_10_11_8: "14|19"
+  nac_31_10_11_9: "15|16|17|18"
+  nac_31_11_10_1: "3|4|18|19"
+  nac_31_11_10_2: "5|6|16|17"
+  nac_31_11_10_3: "7|8|14|15"
+  nac_31_11_10_4: "9|10|12|13"
+  nac_31_11_10_5: "11"
+  nac_31_11_11_1: "3|4|18|19"
+  nac_31_11_11_2: "5|6|16|17"
+  nac_31_11_11_3: "7|8|14|15"
+  nac_31_11_11_4: "9|10|12|13"
+  nac_31_11_11_5: "11"
+  nac_31_11_12_1: "3|4|18|19"
+  nac_31_11_12_2: "5|6|16|17"
+  nac_31_11_12_3: "7|8|14|15"
+  nac_31_11_12_4: "9|10|12|13"
+  nac_31_11_12_5: "11"
+  nac_32_10_10: '01|02|03|04,#,#,#,#,#,#,#,#,#'
+  nac_50_10_10: "3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18"
+  nac_51_10_10: "大|小|单|双"
+  nac_52_10_10: "111|222|333|444|555|666"
+  nac_52_10_11: "通选"
+  nac_53_10_10: "112|223"
+  nac_53_10_11: "11"
+  #"11|22|33|44|55|66,2|3|4|5|6"
+  nac_54_10_10: "123|245|456"
+  nac_55_10_10: "13|25|46"
+  nac_56_10_10: "123|234|345|456"
+  nac_56_10_11: "通选"
+  nac_57_10_10: "1|2"
+  nac_58_10_10: "[{\"numbers\":\"1\",\"betPrice\":50},{\"numbers\":\"2\",\"betPrice\":50},{\"numbers\":\"3\",\"betPrice\":50},{\"numbers\":\"4\",\"betPrice\":50},{\"numbers\":\"5\",\"betPrice\":50},{\"numbers\":\"6\",\"betPrice\":50}]"
+  nac_58_10_11: "[{\"numbers\":\"大\",\"betPrice\":50},{\"numbers\":\"小\",\"betPrice\":50}]"
+  nac_58_11_10: "[{\"numbers\":\"111\",\"betPrice\":50},{\"numbers\":\"222\",\"betPrice\":50},{\"numbers\":\"333\",\"betPrice\":50},{\"numbers\":\"444\",\"betPrice\":50},{\"numbers\":\"555\",\"betPrice\":50}]"
+  nac_58_11_11: "[{\"numbers\":\"全骰\",\"betPrice\":50}]"
+  nac_58_12_10: "[{\"numbers\":\"11\",\"betPrice\":50},{\"numbers\":\"22\",\"betPrice\":50},{\"numbers\":\"33\",\"betPrice\":50},{\"numbers\":\"44\",\"betPrice\":50},{\"numbers\":\"55\",\"betPrice\":50},{\"numbers\":\"66\",\"betPrice\":50}]"
+  nac_58_13_10: "[{\"numbers\":\"12\",\"betPrice\":50}]"
+  nac_58_14_10: "[{\"numbers\":\"4\",\"betPrice\":50},{\"numbers\":\"5\",\"betPrice\":50},{\"numbers\":\"6\",\"betPrice\":50},{\"numbers\":\"7\",\"betPrice\":50},{\"numbers\":\"8\",\"betPrice\":50},{\"numbers\":\"9\",\"betPrice\":50},{\"numbers\":\"10\",\"betPrice\":50},{\"numbers\":\"11\",\"betPrice\":50},{\"numbers\":\"12\",\"betPrice\":50},{\"numbers\":\"13\",\"betPrice\":50},{\"numbers\":\"14\",\"betPrice\":50},{\"numbers\":\"15\",\"betPrice\":50},{\"numbers\":\"16\",\"betPrice\":50},{\"numbers\":\"17\",\"betPrice\":50}]"
+  nac_59_10_10: "1|2|3"
+  nac_60_10_10: "红"
+  nac_60_11_10: "黑"
+  nac_70_10_10: "01|02|03,01|02|03,01|02|03"
+  # "01|02|03|04|05|06|07|08|09|10|11,01|02|03|04|05|06|07|08|09|10|11,01|02|03|04|05|06|07|08|09|10|11"
+  nac_70_10_11: "01_02_03,01_02_04"
+  nac_70_11_10: "01|02|03|04|05|06|07|08|09|10|11"
+  nac_70_11_11: "01_02_03,01_02_04"
+  nac_70_11_12: "01|02,03|04|05"
+  nac_71_10_10: "01|02|03|04|05|06|07|08|09|10|11,01|02|03|04|05|06|07|08|09|10|11"
+  nac_71_10_11: "01_02,01_04"
+  nac_71_11_10: "01|02|03|04|05|06|07|08|09|10|11"
+  nac_71_11_11: "01_02,01_04"
+  nac_71_11_12: "01,03|04|05"
+  nac_72_10_10: "01|02|03"
+  nac_73_10_10_1: "0单5双"
+  nac_73_10_10_2: "5单0双"
+  nac_73_10_10_3: "1单4双"
+  nac_73_10_10_4: "4单1双"
+  nac_73_10_10_5: "2单3双"
+  nac_73_10_10_6: "3单2双"
+  nac_73_10_11_1: "03|09"
+  nac_73_10_11_2: "04|08"
+  nac_73_10_11_3: "05|07"
+  nac_73_10_11_4: "06"
+  nac_74_10_10: "01|02|03|04,#,01|02|03|04|05,01|02|03|04|05,01|02|03|04|05"
+  nac_75_10_10: "01"
+  nac_75_10_11: "01|02|03|04|05|06|07|08|09"
+  nac_75_10_12: "01|02|03|04|05|06|07|08|09"
+  nac_75_10_13: "01|02|03|04|05|06|07|08|09"
+  nac_75_10_14: "01|02|03|04|05|06|07|08|09"
+  nac_75_10_15: "01|02|03|04|05|06|07|08|09"
+  nac_75_10_16: "01|02|03|04|05|06|07|08|09"
+  nac_75_10_17: "01|02|03|04|05|06|07|08|09"
+  nac_75_11_10: "01"
+  nac_75_11_11: "01_02"
+  nac_75_11_12: "01_02_03"
+  nac_75_11_13: "01_02_03_04"
+  nac_75_11_14: "01_02_03_04_05"
+  nac_75_11_15: "01_02_03_04_05_06"
+  nac_75_11_16: "01_02_03_04_05_06_07"
+  nac_75_11_17: "01_02_03_04_05_06_07_08"
+  nac_75_12_10: "01,02|03|04|05"
+  nac_75_12_11: "01|02,03|04|05"
+  nac_75_12_12: "01|02|03,04"
+  nac_75_12_13: "01,02|03|04|05|06"
+  nac_75_12_14: "01|02|03|04,06|07|08|09"
+  nac_75_12_15: "01|02|03|04|05|06,07|08|09|10|11"
+  nac_75_12_16: "01|02|03|04|05,06|07|08|09"
+  nac_76_10_10: "[{\"digitPos\":\"特码\",\"numbers\":\"10\",\"betPrice\":2},{\"digitPos\":\"正二\",\"numbers\":\"03\",\"betPrice\":2}]"
+  nac_76_10_11: "[{\"digitPos\":\"特码\",\"numbers\":\"质\",\"betPrice\":2},{\"digitPos\":\"正二\",\"numbers\":\"合\",\"betPrice\":2}]"
+  nac_76_11_10: "[{\"digitPos\":\"正一|特码\",\"numbers\":\"龙\",\"betPrice\":2},{\"digitPos\":\"正二|正三\",\"numbers\":\"虎\",\"betPrice\":2}]"
+  nac_76_12_10: "[{\"numbers\":\"01\",\"betPrice\":2},{\"numbers\":\"02\",\"betPrice\":2}]"
+  # "01|02|03|04|05,06|07|08|09|10|11"
+  #""01,02|03|04|05|06|07|08|09|10|11"  |  "01|02,03|04|05|06|07|08|09|10|11" |  01|02|03,04|05|06|07|08|09|10|11"  | "01|02|03|04,05|06|07|08|09" | 01|02|03|04|05,06|07|08|09" | "01|02|03|04|05|06,07|08|09|10|11" |  "01|02|03|04|05|06|07,08|09|10|11"
+
+
+  # "[{\"numbers\":\"4\",\"betPrice\":50},{\"numbers\":\"5\",\"betPrice\":50},{\"numbers\":\"6\",\"betPrice\":50},{\"numbers\":\"7\",\"betPrice\":50},{\"numbers\":\"8\",\"betPrice\":50},{\"numbers\":\"9\",\"betPrice\":50},{\"numbers\":\"10\",\"betPrice\":50},{\"numbers\":\"11\",\"betPrice\":50},{\"numbers\":\"12\",\"betPrice\":50},{\"numbers\":\"13\",\"betPrice\":50},{\"numbers\":\"14\",\"betPrice\":50},{\"numbers\":\"15\",\"betPrice\":50},{\"numbers\":\"16\",\"betPrice\":50},{\"numbers\":\"17\",\"betPrice\":50}]"
+
+
+
+
+
+
+#  "[{\"numbers\":\"左单\",\"betPrice\":50},{\"numbers\":\"左双\",\"betPrice\":50},{\"numbers\":\"左小\",\"betPrice\":50},{\"numbers\":\"左大\",\"betPrice\":50},{\"numbers\":\"左质\",\"betPrice\":50},{\"numbers\":\"左合\",\"betPrice\":50}]"
+# ,{\"numbers\":\"右单\",\"betPrice\":50},{\"numbers\":\"右双\",\"betPrice\":50},{\"numbers\":\"右小\",\"betPrice\":50},{\"numbers\":\"右大\",\"betPrice\":50},{\"numbers\":\"右质\",\"betPrice\":50},{\"numbers\":\"右合\",\"betPrice\":50}
+#"[{\"numbers\":\"左单\",\"betPrice\":50},{\"numbers\":\"左双\",\"betPrice\":50},{\"numbers\":\"左小\",\"betPrice\":50},{\"numbers\":\"左大\",\"betPrice\":50},{\"numbers\":\"左质\",\"betPrice\":50},{\"numbers\":\"左合\",\"betPrice\":50},{\"numbers\":\"右单\",\"betPrice\":50},{\"numbers\":\"右双\",\"betPrice\":50},{\"numbers\":\"右小\",\"betPrice\":50},{\"numbers\":\"右大\",\"betPrice\":50},{\"numbers\":\"右质\",\"betPrice\":50},{\"numbers\":\"右合\",\"betPrice\":50}]"
+# outputs:
+#  output_verify_fail: Assert Verification fail：expected outcome{%s} != actual results{%s}
+#  output_verify_success: Assert Verify success：expected outcome:{%s} == actual results:{%s}

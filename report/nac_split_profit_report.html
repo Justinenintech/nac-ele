@@ -1,0 +1,1420 @@
+
+                <!DOCTYPE html>
+                <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>Test Junkie HTML Report</title>
+                        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                                crossorigin="anonymous"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+                        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                        <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+                        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+                        <script src="https://www.amcharts.com/lib/4/core.js"></script>
+                        <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+                        <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+                        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+                        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+                    </head>
+                    <body style="background-color: #3d4f58;">
+                        <style>
+                            .absolute_cards{
+                                min-height: 170px;
+                                overflow: hidden;
+                            }
+
+                            .absolute_value{
+                                font-size: 27px;
+                            }
+                            
+                            .modal_absolute_value{
+                                font-size: 17px;
+                            }
+
+                            .card:hover {
+                                background: #193746 !important;
+                                transition: all .3s ease-in;
+                            }
+                            
+                            body {
+                                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                            }
+                            
+                            .success {
+                                background: #12d479;
+                            }
+                            .fail {
+                                background: #fcd75f;
+                            }
+                            .error {
+                                background: #ff7651;
+                            }
+                            .ignore {
+                                background: #cce4eb;
+                            }
+                            .skip {
+                                background: #34bff5;
+                            }
+                            .cancel {
+                                background: #f19def;
+                            }
+                            .info-badge {
+                                background: #aac7d2;
+                            }
+                            
+                            .parent-badge{
+                                margin-top: 8px;
+                            }
+                            
+                            .badge {
+                                border-radius: 3px;
+                                margin-right: 7px;
+                                color: #333 !important;
+                            }
+                            
+                            .traceback {
+                                background: #23323a !important;
+                                padding: 15px !important;
+                                color: #fd5858 !important;
+                                margin: 0px !important;
+                            }
+                            
+                            .collapsible-header {
+                                background: #37474f !important;
+                                border-color: #193746;
+                            }
+                            
+                            .collapsible.expandable {
+                                border: 1px #37474f;
+                            }
+                            
+                            .collapsible-header:hover {
+                                background: #193746 !important;
+                                transition: all .3s ease-in;
+                                transition: all .3s ease-out;
+                            }
+                            
+                            .collapsible-body {
+                                border-color: transparent;
+                            }
+                            
+                            .attempt-header {
+                                padding: 5px;
+                                padding-bottom: 0px;
+                                border: 0px;
+                            }
+                            
+                            .parameter {
+                              white-space: nowrap;
+                              overflow: hidden;
+                              text-overflow: ellipsis;
+                              font-size: 14px;
+                            }
+                            
+                            html {
+                                overflow: scroll;
+                                overflow-x: hidden;
+                            }
+                            ::-webkit-scrollbar {
+                                width: 0px;  /* remove scrollbar space */
+                                background: transparent;  /* optional: just make scrollbar invisible */
+                            }
+                            /* optional: show position indicator in red */
+                            ::-webkit-scrollbar-thumb {
+                                background: transparent;
+                            }
+                            .traceback > textarea{
+                                padding-bottom: 0px;
+                                margin-bottom: 0px;
+                                overflow: auto;
+                            }
+                            .large-data-card{
+                                width: 100%;
+                                height: 370px;
+                            }
+                        </style>
+                        <div class='row'>
+                    <div class="col s6 m4 l3 xl2">
+                      <div class="card blue-grey darken-3 absolute_cards tooltipped" data-html='true' data-tooltip='Absolute # of tests executed.<br>May not match with the # of entries in the table because parameterized tests are nested in the table.'>
+                        <div class="card-content white-text">
+                          <span class="card-title">Tests Executed:</span>
+                          <div class="absolute_value"><b>0</b></div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="col s6 m4 l3 xl2">
+                      <div class="card blue-grey darken-3 absolute_cards " >
+                        <div class="card-content white-text">
+                          <span class="card-title">Passing Rate:</span>
+                          <div class="absolute_value"><b>0%</b></div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="col s6 m4 l3 xl2">
+                      <div class="card blue-grey darken-3 absolute_cards tooltipped" data-html='true' data-tooltip='Absolute time that it took to run all of the tests'>
+                        <div class="card-content white-text">
+                          <span class="card-title">Runtime:</span>
+                          <div class="absolute_value"><b>00h:00m:02s</b></div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="col s6 m4 l3 xl2">
+                      <div class="card blue-grey darken-3 absolute_cards tooltipped" data-html='true' data-tooltip='Avg. time per test. This accounts only for the functions decorated with @test()'>
+                        <div class="card-content white-text">
+                          <span class="card-title">Average Test Runtime:</span>
+                          <div class="absolute_value"><b>08h:00m:34s</b></div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="col s6 m4 l3 xl2">
+                      <div class="card blue-grey darken-3 absolute_cards " >
+                        <div class="card-content white-text">
+                          <span class="card-title">Average CPU:</span>
+                          <div class="absolute_value"><b>4.95%</b></div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="col s6 m4 l3 xl2">
+                      <div class="card blue-grey darken-3 absolute_cards " >
+                        <div class="card-content white-text">
+                          <span class="card-title">Average Mem:</span>
+                          <div class="absolute_value"><b>46.0%</b></div>
+                        </div>
+                      </div>
+                    </div>
+                   </div><div class='row'>
+                <div class='col s12 m12 l6 xl6'>
+                  <div class='card blue-grey darken-3'>
+                    <div class='large-data-card card-content white-text'>
+                      <span class='card-title'>Health of Features:</span>
+                      <div id="health"></div>
+                      
+                    <style>
+                        #health {
+                            width: 100%;
+                            height: 282px;
+                        }
+                    </style>
+                   
+                      
+                    <script>
+                    $(document).ready(function() {
+                        // Themes begin
+                        am4core.useTheme(am4themes_dark);
+                        am4core.useTheme(am4themes_animated);
+
+                        // Create chart instance
+                        var chart = am4core.create("health", am4charts.RadarChart);
+
+                        // Add data
+                        chart.data = [{'full': 100, 'category': '75_10_10', 'value': '0'}];
+
+                        // Make chart not full circle
+                        chart.startAngle = -90;
+                        chart.endAngle = 180;
+                        chart.innerRadius = am4core.percent(20);
+
+                        // Set number format
+                        chart.numberFormatter.numberFormat = "#.#'%'";
+
+                        // Create axes
+                        var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+                        categoryAxis.dataFields.category = "category";
+                        categoryAxis.renderer.grid.template.location = 0;
+                        categoryAxis.renderer.grid.template.strokeOpacity = 0;
+                        categoryAxis.renderer.labels.template.horizontalCenter = "right";
+                        categoryAxis.renderer.labels.template.fontWeight = 500;
+                        categoryAxis.renderer.labels.template.adapter.add("fill", function(fill, target) {
+                          return (target.dataItem.index >= 0) ? chart.colors.getIndex(target.dataItem.index) : fill;
+                        });
+                        categoryAxis.renderer.minGridDistance = 10;
+
+                        var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
+                        valueAxis.renderer.grid.template.strokeOpacity = 0;
+                        valueAxis.min = 0;
+                        valueAxis.max = 100;
+                        valueAxis.strictMinMax = true;
+
+                        // Create series
+                        var series1 = chart.series.push(new am4charts.RadarColumnSeries());
+                        series1.dataFields.valueX = "full";
+                        series1.dataFields.categoryY = "category";
+
+                        series1.columns.template.fill = new am4core.InterfaceColorSet().getFor("alternativeBackground");
+                        series1.columns.template.fillOpacity = 0.08;
+                        series1.columns.template.cornerRadiusTopLeft = 20;
+                        series1.columns.template.strokeWidth = 0;
+                        series1.columns.template.radarColumn.cornerRadius = 20;
+
+                        var series2 = chart.series.push(new am4charts.RadarColumnSeries());
+                        series2.dataFields.valueX = "value";
+                        series2.dataFields.categoryY = "category";
+                        series2.clustered = false;
+                        series2.columns.template.strokeWidth = 0;
+                        series2.columns.template.tooltipText = "{category}: [bold]{value}%[/]";
+                        series2.columns.template.radarColumn.cornerRadius = 20;
+
+                        series2.columns.template.adapter.add("fill", function(fill, target) {
+                          return chart.colors.getIndex(target.dataItem.index);
+                        });
+
+                        // Add cursor
+                        chart.cursor = new am4charts.RadarCursor();
+                    });
+                    </script>
+                   
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="col s12 m12 l6 xl6">
+                  <div class="card blue-grey darken-3">
+                    <div class="large-data-card card-content white-text">
+                      <span class="card-title">Absolute Metrics:</span>
+                        <div id="absolute_metrics"></div>
+                        
+                   <style>
+                       #absolute_metrics{
+                            width: 100%;
+                            height: 282px;
+                       }
+                   </style>
+                   
+                        
+                   <script>
+                        // Theme
+                        am4core.useTheme(am4themes_dark);
+                        am4core.useTheme(am4themes_animated);
+
+                        var chart = am4core.create("absolute_metrics", am4charts.PieChart);
+                        chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+                        chart.data = [];
+                        chart.radius = am4core.percent(70);
+                        chart.innerRadius = am4core.percent(40);
+                        chart.startAngle = 180;
+                        chart.endAngle = 360;
+
+                        var series = chart.series.push(new am4charts.PieSeries());
+                        
+                        // format colors
+                        var colors = []
+                        for (item in colors) colors[item] = am4core.color(colors[item]) 
+                        series.colors.list = colors;
+                        
+                        series.dataFields.value = "value";
+                        series.dataFields.category = "status";
+                        series.slices.template.cornerRadius = 10;
+                        series.slices.template.innerCornerRadius = 7;
+                        series.slices.template.draggable = true;
+                        series.slices.template.inert = true;
+                        series.alignLabels = false;
+                        series.hiddenState.properties.startAngle = 90;
+                        series.hiddenState.properties.endAngle = 90;
+                   </script>
+                   
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="col s12 m12 l6 xl6">
+                  <div class="card blue-grey darken-3">
+                    <div class="large-data-card card-content white-text">
+                      <span class="card-title">Insights:</span>
+                      <div id="insights">
+                      <ul id="insights_list">
+                      </ul>
+                      </div>
+                      
+                    <style>
+                        #insights {
+                            width: 100%;
+                            height: 275px;
+                            overflow-y: auto;
+                        }
+                        
+                        #insights_list > li {
+                            padding: 10px;
+                        }
+                        
+                        #insights_list > li:hover {
+                            background: #1e4254;
+                            border-radius: 3px;
+                        }
+                        
+                        .traceback-tooltip{
+                            background-color: #eae8e8;
+                            border-radius: 3px;
+                            color: #444;
+                            cursor: pointer;
+                        }
+                    </style>
+                   
+                      
+                   <script>
+                       var insights = ["All of your tests are stable and thus no time was lost on <a ref='noopener' target='_blank' href='https://www.test-junkie.com/documentation/#retry'>retries <i class='fas fa-external-link-alt'></i></a>.", 'Consider enabling multi-threading.']
+                       var insights_list = $("#insights_list")
+                       var insights_html = ""
+                       for(index in insights){
+                           insights_html += "<li>"+insights[index]+"</li>"
+                       }
+                       insights_list.html(insights_html)
+                   </script>
+                   
+                    </div>
+                  </div>
+                </div>
+               
+                <div class='col s12 m12 l6 xl6'>
+                  <div class='card blue-grey darken-3'>
+                    <div class='large-data-card card-content white-text'>
+                      <span class='card-title'>CPU & Memory Usage:</span>
+                      
+                      <div id="resources"></div>
+                      
+                   <style>
+                        #resources {
+                            width: 100%;
+                            height: 282px;
+                        }
+                   </style>
+                   
+                      
+                   <script>
+                   $(document).ready(function() {
+                        // Themes
+                        am4core.useTheme(am4themes_dark);
+                        am4core.useTheme(am4themes_animated);
+                        
+                        // Create chart
+                        var chart = am4core.create("resources", am4charts.XYChart);
+                        chart.paddingRight = 20;
+                        
+                        // format data
+                        var data = [{'date': '2021-09-07 16:00:33.191223', 'cpu': 7.0, 'mem': 46.0}, {'date': '2021-09-07 16:00:34.203914', 'cpu': 2.9, 'mem': 46.0}];
+                        for(dict in data) data[dict].date = new Date(data[dict].date)
+                        
+                        chart.data = data;
+    
+                        var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+                        dateAxis.baseInterval = {
+                          "timeUnit": "second",
+                          "count": 1
+                        };
+                        dateAxis.tooltipDateFormat = "HH:mm:ss, d MMMM";
+    
+                        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+                        valueAxis.tooltip.disabled = true;
+                        valueAxis.title.text = "Usage %";
+                        valueAxis.strictMinMax  = 100;
+    
+                        function createSeries(field, name){
+                          var series = chart.series.push(new am4charts.LineSeries());
+                          series.name = name;
+                          series.dataFields.dateX = "date";
+                          series.dataFields.valueY = field;
+                          series.tooltipText = name+": [bold]{valueY}%[/]";
+                          series.fillOpacity = 0.3;
+                          return series
+                        }
+    
+                        createSeries("cpu", "cpu")
+                        createSeries("mem", "mem")
+                        chart.cursor = new am4charts.XYCursor();
+                        chart.cursor.lineY.opacity = 0;
+                    });
+                   </script>
+                   
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="row">
+                    <div class="col s12 m12 l12 xl12">
+                      <ul class="tabs transparent" style="margin-left: 20px;">
+                        <li class="tab col s2"><a class="blue-text text-lighten-2 active" href="#features_tab">Features</a></li>
+                        <li class="tab col s2"><a class="blue-text text-lighten-2" href="#components_tab">Components</a></li>
+                        <li class="tab col s2"><a class="blue-text text-lighten-2" href="#owners_tab">Team</a></li>
+                        <li class="tab col s2"><a class="blue-text text-lighten-2" href="#suites_tab">Suites</a></li>
+                        <li class="tab col s2"><a class="blue-text text-lighten-2" href="#tags_tab">Tags</a></li>
+                        <div class="indicator blue" style="z-index:1"></div>
+                      </ul>
+                    </div>
+                    
+                   <div id="features_tab" class="col s12">
+                       <div class="col s12 m12 l12 xl12">
+                         <div class="card blue-grey darken-3">
+                           <div class="card-content white-text">
+                             <span class="card-title">Results by Features:</span>
+                             <div id="features"></div>
+                             
+                    <style>
+                        #features {
+                            width: 100%;
+                            height: 400px;
+                        }
+                    </style>
+                   
+                             
+                   <script>
+                   $(document).ready(function() {
+                        // Themes begin
+                        am4core.useTheme(am4themes_animated);
+                        am4core.useTheme(am4themes_dark);
+                        // Create chart instance
+                        var chart_features = am4core.create("features", am4charts.XYChart);
+                        
+                        // Add data
+                        chart_features.data = [{'duration': '0', 'measure': '75_10_10', 'success': 0, 'fail': 0, 'ignore': 0, 'error': 0, 'skip': 0, 'cancel': 0}]
+                        
+                        // Create axes
+                        var categoryAxis_features = chart_features.xAxes.push(new am4charts.CategoryAxis());
+                        categoryAxis_features.dataFields.category = "measure";
+                        categoryAxis_features.renderer.grid.template.location = 0;
+                        categoryAxis_features.renderer.labels.template.wrap = true;
+                        categoryAxis_features.renderer.labels.template.maxWidth = 120;
+                        
+                        var valueAxis_features = chart_features.yAxes.push(new am4charts.ValueAxis());
+                        valueAxis_features.renderer.inside = true;
+                        valueAxis_features.renderer.labels.template.disabled = true;
+                        valueAxis_features.min = 0;
+                        
+                        var testsAxis_features = chart_features.yAxes.push(new am4charts.ValueAxis());
+                        testsAxis_features.title.text = "Tests";
+                        testsAxis_features.renderer.grid.template.disabled = true;
+                        
+                        var durationAxis_features = chart_features.yAxes.push(new am4charts.DurationAxis());
+                        durationAxis_features.title.text = "Average Test Duration";
+                        durationAxis_features.baseUnit = "second";
+                        durationAxis_features.renderer.grid.template.disabled = true;
+                        durationAxis_features.renderer.opposite = true;
+                        durationAxis_features.durationFormatter.durationFormat = "h'h' m'min' s'sec'";
+                        
+                        // Create series
+                        function createSeries(field, name, color) {
+                              // Set up series
+                              var series_features = chart_features.series.push(new am4charts.ColumnSeries());
+                              series_features.name = name;
+                              series_features.yAxis = testsAxis_features;
+                              series_features.dataFields.valueY = field;
+                              series_features.dataFields.categoryX = "measure";
+                              series_features.sequencedInterpolation = true;
+                              series_features.legendSettings.valueText = "{valueY}"
+                            
+                              // Make it stacked
+                              series_features.stacked = true;
+                            
+                              // Configure columns
+                              series_features.columns.template.width = am4core.percent(60);
+                              series_features.columns.template.tooltipText = "[bold]{name}[/]: {valueY}";
+                              series_features.columns.template.stroke = am4core.color(color);
+                              series_features.columns.template.fill = am4core.color(color);
+                              series_features.columns.template.fillOpacity = 0.9;
+                              return series_features;
+                        }
+                        
+                        var required_series_features = [{'status': 'success', 'label': 'success', 'color': '#12d479'}, {'status': 'fail', 'label': 'fail', 'color': '#fcd75f'}, {'status': 'ignore', 'label': 'ignore', 'color': '#cce4eb'}, {'status': 'error', 'label': 'error', 'color': '#ff7651'}, {'status': 'skip', 'label': 'skip', 'color': '#34bff5'}, {'status': 'cancel', 'label': 'cancel', 'color': '#f19def'}]
+                        for(entry in required_series_features){
+                            createSeries(required_series_features[entry].status, required_series_features[entry].label, required_series_features[entry].color)
+                        }
+                        
+                        var durationSeries_features = chart_features.series.push(new am4charts.LineSeries());
+                        durationSeries_features.dataFields.valueY = "duration";
+                        durationSeries_features.dataFields.categoryX = "measure";
+                        durationSeries_features.yAxis = durationAxis_features;
+                        durationSeries_features.name = "Duration";
+                        durationSeries_features.strokeWidth = 2;
+                        durationSeries_features.stroke = am4core.color("#03a2cd");
+                        durationSeries_features.tooltip.getFillFromObject = false;
+                        durationSeries_features.tooltip.background.fill = am4core.color("#03a2cd");
+                        durationSeries_features.tooltipText = "{valueY.formatDuration()}";
+                        durationSeries_features.legendSettings.valueText = "{valueY}"
+                        
+                        var bullet_features = durationSeries_features.bullets.push(new am4charts.Bullet());
+                        var circle_features = bullet_features.createChild(am4core.Circle);
+                        circle_features.radius = 4;
+                        circle_features.fill = am4core.color("#fff");
+                        circle_features.strokeWidth = 3;
+                        
+                        // Legend
+                        chart_features.legend = new am4charts.Legend();
+                        
+                        // Add cursor
+                        chart_features.cursor = new am4charts.XYCursor();
+                    });
+                   </script>
+                   
+                           </div>
+                         </div>
+                       </div>
+                   </div>
+                   
+                    
+                   <div id="components_tab" class="col s12">
+                       <div class="col s12 m12 l12 xl12">
+                         <div class="card blue-grey darken-3">
+                           <div class="card-content white-text">
+                             <span class="card-title">Results by Components:</span>
+                             <div id="components"></div>
+                             
+                    <style>
+                        #components {
+                            width: 100%;
+                            height: 400px;
+                        }
+                    </style>
+                   
+                             
+                   <script>
+                   $(document).ready(function() {
+                        // Themes begin
+                        am4core.useTheme(am4themes_animated);
+                        am4core.useTheme(am4themes_dark);
+                        // Create chart instance
+                        var chart_components = am4core.create("components", am4charts.XYChart);
+                        
+                        // Add data
+                        chart_components.data = []
+                        
+                        // Create axes
+                        var categoryAxis_components = chart_components.xAxes.push(new am4charts.CategoryAxis());
+                        categoryAxis_components.dataFields.category = "measure";
+                        categoryAxis_components.renderer.grid.template.location = 0;
+                        categoryAxis_components.renderer.labels.template.wrap = true;
+                        categoryAxis_components.renderer.labels.template.maxWidth = 120;
+                        
+                        var valueAxis_components = chart_components.yAxes.push(new am4charts.ValueAxis());
+                        valueAxis_components.renderer.inside = true;
+                        valueAxis_components.renderer.labels.template.disabled = true;
+                        valueAxis_components.min = 0;
+                        
+                        var testsAxis_components = chart_components.yAxes.push(new am4charts.ValueAxis());
+                        testsAxis_components.title.text = "Tests";
+                        testsAxis_components.renderer.grid.template.disabled = true;
+                        
+                        var durationAxis_components = chart_components.yAxes.push(new am4charts.DurationAxis());
+                        durationAxis_components.title.text = "Average Test Duration";
+                        durationAxis_components.baseUnit = "second";
+                        durationAxis_components.renderer.grid.template.disabled = true;
+                        durationAxis_components.renderer.opposite = true;
+                        durationAxis_components.durationFormatter.durationFormat = "h'h' m'min' s'sec'";
+                        
+                        // Create series
+                        function createSeries(field, name, color) {
+                              // Set up series
+                              var series_components = chart_components.series.push(new am4charts.ColumnSeries());
+                              series_components.name = name;
+                              series_components.yAxis = testsAxis_components;
+                              series_components.dataFields.valueY = field;
+                              series_components.dataFields.categoryX = "measure";
+                              series_components.sequencedInterpolation = true;
+                              series_components.legendSettings.valueText = "{valueY}"
+                            
+                              // Make it stacked
+                              series_components.stacked = true;
+                            
+                              // Configure columns
+                              series_components.columns.template.width = am4core.percent(60);
+                              series_components.columns.template.tooltipText = "[bold]{name}[/]: {valueY}";
+                              series_components.columns.template.stroke = am4core.color(color);
+                              series_components.columns.template.fill = am4core.color(color);
+                              series_components.columns.template.fillOpacity = 0.9;
+                              return series_components;
+                        }
+                        
+                        var required_series_components = [{'status': 'success', 'label': 'success', 'color': '#12d479'}, {'status': 'fail', 'label': 'fail', 'color': '#fcd75f'}, {'status': 'ignore', 'label': 'ignore', 'color': '#cce4eb'}, {'status': 'error', 'label': 'error', 'color': '#ff7651'}, {'status': 'skip', 'label': 'skip', 'color': '#34bff5'}, {'status': 'cancel', 'label': 'cancel', 'color': '#f19def'}]
+                        for(entry in required_series_components){
+                            createSeries(required_series_components[entry].status, required_series_components[entry].label, required_series_components[entry].color)
+                        }
+                        
+                        var durationSeries_components = chart_components.series.push(new am4charts.LineSeries());
+                        durationSeries_components.dataFields.valueY = "duration";
+                        durationSeries_components.dataFields.categoryX = "measure";
+                        durationSeries_components.yAxis = durationAxis_components;
+                        durationSeries_components.name = "Duration";
+                        durationSeries_components.strokeWidth = 2;
+                        durationSeries_components.stroke = am4core.color("#03a2cd");
+                        durationSeries_components.tooltip.getFillFromObject = false;
+                        durationSeries_components.tooltip.background.fill = am4core.color("#03a2cd");
+                        durationSeries_components.tooltipText = "{valueY.formatDuration()}";
+                        durationSeries_components.legendSettings.valueText = "{valueY}"
+                        
+                        var bullet_components = durationSeries_components.bullets.push(new am4charts.Bullet());
+                        var circle_components = bullet_components.createChild(am4core.Circle);
+                        circle_components.radius = 4;
+                        circle_components.fill = am4core.color("#fff");
+                        circle_components.strokeWidth = 3;
+                        
+                        // Legend
+                        chart_components.legend = new am4charts.Legend();
+                        
+                        // Add cursor
+                        chart_components.cursor = new am4charts.XYCursor();
+                    });
+                   </script>
+                   
+                           </div>
+                         </div>
+                       </div>
+                   </div>
+                   
+                    
+                   <div id="owners_tab" class="col s12">
+                       <div class="col s12 m12 l12 xl12">
+                         <div class="card blue-grey darken-3">
+                           <div class="card-content white-text">
+                             <span class="card-title">Results by Assignees:</span>
+                             <div id="owners"></div>
+                             
+                    <style>
+                        #owners {
+                            width: 100%;
+                            height: 400px;
+                        }
+                    </style>
+                   
+                             
+                   <script>
+                   $(document).ready(function() {
+                        // Themes begin
+                        am4core.useTheme(am4themes_animated);
+                        am4core.useTheme(am4themes_dark);
+                        // Create chart instance
+                        var chart_owners = am4core.create("owners", am4charts.XYChart);
+                        
+                        // Add data
+                        chart_owners.data = []
+                        
+                        // Create axes
+                        var categoryAxis_owners = chart_owners.xAxes.push(new am4charts.CategoryAxis());
+                        categoryAxis_owners.dataFields.category = "measure";
+                        categoryAxis_owners.renderer.grid.template.location = 0;
+                        categoryAxis_owners.renderer.labels.template.wrap = true;
+                        categoryAxis_owners.renderer.labels.template.maxWidth = 120;
+                        
+                        var valueAxis_owners = chart_owners.yAxes.push(new am4charts.ValueAxis());
+                        valueAxis_owners.renderer.inside = true;
+                        valueAxis_owners.renderer.labels.template.disabled = true;
+                        valueAxis_owners.min = 0;
+                        
+                        var testsAxis_owners = chart_owners.yAxes.push(new am4charts.ValueAxis());
+                        testsAxis_owners.title.text = "Tests";
+                        testsAxis_owners.renderer.grid.template.disabled = true;
+                        
+                        var durationAxis_owners = chart_owners.yAxes.push(new am4charts.DurationAxis());
+                        durationAxis_owners.title.text = "Average Test Duration";
+                        durationAxis_owners.baseUnit = "second";
+                        durationAxis_owners.renderer.grid.template.disabled = true;
+                        durationAxis_owners.renderer.opposite = true;
+                        durationAxis_owners.durationFormatter.durationFormat = "h'h' m'min' s'sec'";
+                        
+                        // Create series
+                        function createSeries(field, name, color) {
+                              // Set up series
+                              var series_owners = chart_owners.series.push(new am4charts.ColumnSeries());
+                              series_owners.name = name;
+                              series_owners.yAxis = testsAxis_owners;
+                              series_owners.dataFields.valueY = field;
+                              series_owners.dataFields.categoryX = "measure";
+                              series_owners.sequencedInterpolation = true;
+                              series_owners.legendSettings.valueText = "{valueY}"
+                            
+                              // Make it stacked
+                              series_owners.stacked = true;
+                            
+                              // Configure columns
+                              series_owners.columns.template.width = am4core.percent(60);
+                              series_owners.columns.template.tooltipText = "[bold]{name}[/]: {valueY}";
+                              series_owners.columns.template.stroke = am4core.color(color);
+                              series_owners.columns.template.fill = am4core.color(color);
+                              series_owners.columns.template.fillOpacity = 0.9;
+                              return series_owners;
+                        }
+                        
+                        var required_series_owners = [{'status': 'success', 'label': 'success', 'color': '#12d479'}, {'status': 'fail', 'label': 'fail', 'color': '#fcd75f'}, {'status': 'ignore', 'label': 'ignore', 'color': '#cce4eb'}, {'status': 'error', 'label': 'error', 'color': '#ff7651'}, {'status': 'skip', 'label': 'skip', 'color': '#34bff5'}, {'status': 'cancel', 'label': 'cancel', 'color': '#f19def'}]
+                        for(entry in required_series_owners){
+                            createSeries(required_series_owners[entry].status, required_series_owners[entry].label, required_series_owners[entry].color)
+                        }
+                        
+                        var durationSeries_owners = chart_owners.series.push(new am4charts.LineSeries());
+                        durationSeries_owners.dataFields.valueY = "duration";
+                        durationSeries_owners.dataFields.categoryX = "measure";
+                        durationSeries_owners.yAxis = durationAxis_owners;
+                        durationSeries_owners.name = "Duration";
+                        durationSeries_owners.strokeWidth = 2;
+                        durationSeries_owners.stroke = am4core.color("#03a2cd");
+                        durationSeries_owners.tooltip.getFillFromObject = false;
+                        durationSeries_owners.tooltip.background.fill = am4core.color("#03a2cd");
+                        durationSeries_owners.tooltipText = "{valueY.formatDuration()}";
+                        durationSeries_owners.legendSettings.valueText = "{valueY}"
+                        
+                        var bullet_owners = durationSeries_owners.bullets.push(new am4charts.Bullet());
+                        var circle_owners = bullet_owners.createChild(am4core.Circle);
+                        circle_owners.radius = 4;
+                        circle_owners.fill = am4core.color("#fff");
+                        circle_owners.strokeWidth = 3;
+                        
+                        // Legend
+                        chart_owners.legend = new am4charts.Legend();
+                        
+                        // Add cursor
+                        chart_owners.cursor = new am4charts.XYCursor();
+                    });
+                   </script>
+                   
+                           </div>
+                         </div>
+                       </div>
+                   </div>
+                   
+                    
+                   <div id="suites_tab" class="col s12">
+                       <div class="col s12 m12 l12 xl12">
+                         <div class="card blue-grey darken-3">
+                           <div class="card-content white-text">
+                             <span class="card-title">Results by Test Suites:</span>
+                             <div id="suites"></div>
+                             
+                    <style>
+                        #suites {
+                            width: 100%;
+                            height: 400px;
+                        }
+                    </style>
+                   
+                             
+                   <script>
+                   $(document).ready(function() {
+                        // Themes begin
+                        am4core.useTheme(am4themes_animated);
+                        am4core.useTheme(am4themes_dark);
+                        // Create chart instance
+                        var chart_suites = am4core.create("suites", am4charts.XYChart);
+                        
+                        // Add data
+                        chart_suites.data = []
+                        
+                        // Create axes
+                        var categoryAxis_suites = chart_suites.xAxes.push(new am4charts.CategoryAxis());
+                        categoryAxis_suites.dataFields.category = "measure";
+                        categoryAxis_suites.renderer.grid.template.location = 0;
+                        categoryAxis_suites.renderer.labels.template.wrap = true;
+                        categoryAxis_suites.renderer.labels.template.maxWidth = 120;
+                        
+                        var valueAxis_suites = chart_suites.yAxes.push(new am4charts.ValueAxis());
+                        valueAxis_suites.renderer.inside = true;
+                        valueAxis_suites.renderer.labels.template.disabled = true;
+                        valueAxis_suites.min = 0;
+                        
+                        var testsAxis_suites = chart_suites.yAxes.push(new am4charts.ValueAxis());
+                        testsAxis_suites.title.text = "Tests";
+                        testsAxis_suites.renderer.grid.template.disabled = true;
+                        
+                        var durationAxis_suites = chart_suites.yAxes.push(new am4charts.DurationAxis());
+                        durationAxis_suites.title.text = "Average Test Duration";
+                        durationAxis_suites.baseUnit = "second";
+                        durationAxis_suites.renderer.grid.template.disabled = true;
+                        durationAxis_suites.renderer.opposite = true;
+                        durationAxis_suites.durationFormatter.durationFormat = "h'h' m'min' s'sec'";
+                        
+                        // Create series
+                        function createSeries(field, name, color) {
+                              // Set up series
+                              var series_suites = chart_suites.series.push(new am4charts.ColumnSeries());
+                              series_suites.name = name;
+                              series_suites.yAxis = testsAxis_suites;
+                              series_suites.dataFields.valueY = field;
+                              series_suites.dataFields.categoryX = "measure";
+                              series_suites.sequencedInterpolation = true;
+                              series_suites.legendSettings.valueText = "{valueY}"
+                            
+                              // Make it stacked
+                              series_suites.stacked = true;
+                            
+                              // Configure columns
+                              series_suites.columns.template.width = am4core.percent(60);
+                              series_suites.columns.template.tooltipText = "[bold]{name}[/]: {valueY}";
+                              series_suites.columns.template.stroke = am4core.color(color);
+                              series_suites.columns.template.fill = am4core.color(color);
+                              series_suites.columns.template.fillOpacity = 0.9;
+                              return series_suites;
+                        }
+                        
+                        var required_series_suites = [{'status': 'success', 'label': 'success', 'color': '#12d479'}, {'status': 'fail', 'label': 'fail', 'color': '#fcd75f'}, {'status': 'ignore', 'label': 'ignore', 'color': '#cce4eb'}, {'status': 'error', 'label': 'error', 'color': '#ff7651'}, {'status': 'skip', 'label': 'skip', 'color': '#34bff5'}, {'status': 'cancel', 'label': 'cancel', 'color': '#f19def'}]
+                        for(entry in required_series_suites){
+                            createSeries(required_series_suites[entry].status, required_series_suites[entry].label, required_series_suites[entry].color)
+                        }
+                        
+                        var durationSeries_suites = chart_suites.series.push(new am4charts.LineSeries());
+                        durationSeries_suites.dataFields.valueY = "duration";
+                        durationSeries_suites.dataFields.categoryX = "measure";
+                        durationSeries_suites.yAxis = durationAxis_suites;
+                        durationSeries_suites.name = "Duration";
+                        durationSeries_suites.strokeWidth = 2;
+                        durationSeries_suites.stroke = am4core.color("#03a2cd");
+                        durationSeries_suites.tooltip.getFillFromObject = false;
+                        durationSeries_suites.tooltip.background.fill = am4core.color("#03a2cd");
+                        durationSeries_suites.tooltipText = "{valueY.formatDuration()}";
+                        durationSeries_suites.legendSettings.valueText = "{valueY}"
+                        
+                        var bullet_suites = durationSeries_suites.bullets.push(new am4charts.Bullet());
+                        var circle_suites = bullet_suites.createChild(am4core.Circle);
+                        circle_suites.radius = 4;
+                        circle_suites.fill = am4core.color("#fff");
+                        circle_suites.strokeWidth = 3;
+                        
+                        // Legend
+                        chart_suites.legend = new am4charts.Legend();
+                        
+                        // Add cursor
+                        chart_suites.cursor = new am4charts.XYCursor();
+                    });
+                   </script>
+                   
+                           </div>
+                         </div>
+                       </div>
+                   </div>
+                   
+                    
+                   <div id="tags_tab" class="col s12">
+                       <div class="col s12 m12 l12 xl12">
+                         <div class="card blue-grey darken-3">
+                           <div class="card-content white-text">
+                             <span class="card-title">Results by Tags:</span>
+                             <div id="tags"></div>
+                             
+                    <style>
+                        #tags {
+                            width: 100%;
+                            height: 400px;
+                        }
+                    </style>
+                   
+                             
+                   <script>
+                   $(document).ready(function() {
+                        // Themes begin
+                        am4core.useTheme(am4themes_animated);
+                        am4core.useTheme(am4themes_dark);
+                        // Create chart instance
+                        var chart_tags = am4core.create("tags", am4charts.XYChart);
+                        
+                        // Add data
+                        chart_tags.data = []
+                        
+                        // Create axes
+                        var categoryAxis_tags = chart_tags.xAxes.push(new am4charts.CategoryAxis());
+                        categoryAxis_tags.dataFields.category = "measure";
+                        categoryAxis_tags.renderer.grid.template.location = 0;
+                        categoryAxis_tags.renderer.labels.template.wrap = true;
+                        categoryAxis_tags.renderer.labels.template.maxWidth = 120;
+                        
+                        var valueAxis_tags = chart_tags.yAxes.push(new am4charts.ValueAxis());
+                        valueAxis_tags.renderer.inside = true;
+                        valueAxis_tags.renderer.labels.template.disabled = true;
+                        valueAxis_tags.min = 0;
+                        
+                        var testsAxis_tags = chart_tags.yAxes.push(new am4charts.ValueAxis());
+                        testsAxis_tags.title.text = "Tests";
+                        testsAxis_tags.renderer.grid.template.disabled = true;
+                        
+                        var durationAxis_tags = chart_tags.yAxes.push(new am4charts.DurationAxis());
+                        durationAxis_tags.title.text = "Average Test Duration";
+                        durationAxis_tags.baseUnit = "second";
+                        durationAxis_tags.renderer.grid.template.disabled = true;
+                        durationAxis_tags.renderer.opposite = true;
+                        durationAxis_tags.durationFormatter.durationFormat = "h'h' m'min' s'sec'";
+                        
+                        // Create series
+                        function createSeries(field, name, color) {
+                              // Set up series
+                              var series_tags = chart_tags.series.push(new am4charts.ColumnSeries());
+                              series_tags.name = name;
+                              series_tags.yAxis = testsAxis_tags;
+                              series_tags.dataFields.valueY = field;
+                              series_tags.dataFields.categoryX = "measure";
+                              series_tags.sequencedInterpolation = true;
+                              series_tags.legendSettings.valueText = "{valueY}"
+                            
+                              // Make it stacked
+                              series_tags.stacked = true;
+                            
+                              // Configure columns
+                              series_tags.columns.template.width = am4core.percent(60);
+                              series_tags.columns.template.tooltipText = "[bold]{name}[/]: {valueY}";
+                              series_tags.columns.template.stroke = am4core.color(color);
+                              series_tags.columns.template.fill = am4core.color(color);
+                              series_tags.columns.template.fillOpacity = 0.9;
+                              return series_tags;
+                        }
+                        
+                        var required_series_tags = [{'status': 'success', 'label': 'success', 'color': '#12d479'}, {'status': 'fail', 'label': 'fail', 'color': '#fcd75f'}, {'status': 'ignore', 'label': 'ignore', 'color': '#cce4eb'}, {'status': 'error', 'label': 'error', 'color': '#ff7651'}, {'status': 'skip', 'label': 'skip', 'color': '#34bff5'}, {'status': 'cancel', 'label': 'cancel', 'color': '#f19def'}]
+                        for(entry in required_series_tags){
+                            createSeries(required_series_tags[entry].status, required_series_tags[entry].label, required_series_tags[entry].color)
+                        }
+                        
+                        var durationSeries_tags = chart_tags.series.push(new am4charts.LineSeries());
+                        durationSeries_tags.dataFields.valueY = "duration";
+                        durationSeries_tags.dataFields.categoryX = "measure";
+                        durationSeries_tags.yAxis = durationAxis_tags;
+                        durationSeries_tags.name = "Duration";
+                        durationSeries_tags.strokeWidth = 2;
+                        durationSeries_tags.stroke = am4core.color("#03a2cd");
+                        durationSeries_tags.tooltip.getFillFromObject = false;
+                        durationSeries_tags.tooltip.background.fill = am4core.color("#03a2cd");
+                        durationSeries_tags.tooltipText = "{valueY.formatDuration()}";
+                        durationSeries_tags.legendSettings.valueText = "{valueY}"
+                        
+                        var bullet_tags = durationSeries_tags.bullets.push(new am4charts.Bullet());
+                        var circle_tags = bullet_tags.createChild(am4core.Circle);
+                        circle_tags.radius = 4;
+                        circle_tags.fill = am4core.color("#fff");
+                        circle_tags.strokeWidth = 3;
+                        
+                        // Legend
+                        chart_tags.legend = new am4charts.Legend();
+                        
+                        // Add cursor
+                        chart_tags.cursor = new am4charts.XYCursor();
+                    });
+                   </script>
+                   
+                           </div>
+                         </div>
+                       </div>
+                   </div>
+                   
+                </div>
+               
+                <div class="row">
+                    <div class="col s12 m12 l12 xl12">
+                      <div class="card blue-grey darken-3">
+                            <div class="card-content white-text">
+                                <table id="table_results" class="mdl-data-table" ></table>
+                                
+                   <style>
+                        table.dataTable thead th, table.dataTable thead td, table.dataTable.no-footer{
+                        border: 0px !important;}
+                        table.dataTable.no-footer{padding-bottom: 10px;}
+                        #table_results tr{background: transparent;}
+                        #table_results tbody tr:hover{
+                            background: #1e4254;
+                            cursor: pointer;
+                            border-radius: 3px;}
+                        #table_results_info{color: #ffffff;}
+                        .dataTables_wrapper .dataTables_paginate{padding-right:50px;}
+                        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button {
+                            color: #ffffff !important;
+                            background: transparent !important;
+                            border: 1px transparent!important;}
+                        .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+                            color: #ffffff !important;
+                            border-bottom: 2px #fff !important;}
+                        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+                            background: transparent !important;
+                            border: 1px transparent!important;}
+                        .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+                            background: transparent !important;
+                            border: 1px transparent!important;}
+                        .dataTables_wrapper .dataTables_paginate .paginate_button.current{
+                            background: #1e4254 !important;}
+                        .trace-label {
+                            width: 120px;
+                            background: #23323a;
+                            color: #cac531;
+                            position: relative;
+                            padding: 3px;
+                            padding-left: 8px;}
+                        .trace-label:before {
+                            content: '';
+                            position: absolute;
+                            top: 0; right: 0;
+                            border-top: 28px solid #3c4f58;
+                            border-left: 28px solid #23323a;
+                            width: 0;}
+                        .runtime-label {
+                            width: 120px;
+                            background: #23323a;
+                            position: relative;
+                            padding: 3px;
+                            margin-bottom: 15px;
+                            padding-right: 8px;}
+                        .runtime-label:before {
+                            content: '';
+                            position: absolute;
+                            top: 0; left: 0;
+                            border-bottom: 28px solid #3c4f58;
+                            border-right: 28px solid #23323a;
+                            width: 0;}
+                   </style>
+                   
+                                
+                   <script>
+                        $(document).ready(function() {
+
+                            var table = $("#table_results").DataTable( {
+                                deferRender: true,
+                                data: [],
+                                displayLength: 25,
+                                order: [[ 0, "asc" ]],
+                                columns: [
+                                    {
+                                        title: "Suite Name" ,
+                                        mDataProp: "suite",
+                                        defaultContent: "N/A"},
+                                    {
+                                        title: "Test Name" ,
+                                        mDataProp: "test",
+                                        defaultContent: "N/A"},
+                                    {
+                                        title: "Feature" ,
+                                        mDataProp: "feature",
+                                        defaultContent: "N/A"},
+                                    {
+                                        title: "Component" ,
+                                        mDataProp: "component",
+                                        defaultContent: "N/A"},
+                                    {
+                                        title: "Assignee" ,
+                                        mDataProp: "assignee",
+                                        defaultContent: "N/A"},
+                                    {
+                                        title: "Duration" ,
+                                        mDataProp: "duration",
+                                        defaultContent: "N/A"},
+                                    {
+                                        title: "Status" ,
+                                        mDataProp: "status",
+                                        defaultContent: "N/A"}],
+                                createdRow: function(row, data, index){
+                                    row.setAttribute("href", "#testCaseModal")
+                                    row.setAttribute('class', 'modal-trigger')
+                                    row.setAttribute('data-test_id', data.test_id)
+                                    row.setAttribute('data-suite_id', data.suite_id)
+                                }
+                            });
+
+                            var example_length = $('#table_results_length');
+                            var example_filter = $('#table_results_filter');
+                            example_filter.html("")
+                            example_length.html("")
+
+                            $('#table_results thead th').each(function(){
+                                var title = $('#table_results thead th').eq($(this).index()).text();
+                                $(this).html('<input class="deletable" id="search'+$('#table_results thead th').eq($(this).index()).text()+'" type="text" placeholder="'+title+'"/>');
+                            });
+
+                            table.columns().every(function(){
+                                var tableColumn = this;
+                                var input = $(this.header()).find('input');
+
+                                input.on('change', function(){
+                                    tableColumn.search(this.value).draw();
+                                });
+                                input.on('click', function(e){
+                                    e.stopPropagation();
+                                });
+                                input.keyup(function(e){
+                                    tableColumn.search(this.value).draw();
+                                    input.focus();
+                                });
+                                input.keydown(function(e){
+                                    if (e.keyCode == 65 && e.ctrlKey) {
+                                        e.target.select()
+                                    }
+                                });
+                            });
+                        });
+                   </script>
+                   
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="testCaseModal" class="modal" style="background-color: #3d4f58; color: #bbc3c7">
+                        <div id="testCaseModalContent" class="modal-content">
+                              <div class="row"><span style="font-size: 22px;" id="test_name"></span></div>
+                              <div class="row" id="suite_metrics"></div>
+                              <div class="row"><ul class="collapsible expandable" id="test_details"></ul></div>
+                        </div>
+                    </div>
+                    <script>
+                        $(document).ready(function(){
+                            $('#testCaseModal').modal();
+                            var test_modal = $("#testCaseModal")
+                            
+                            function register_tr_clicks(){
+                                $("tr.modal-trigger").on("click", function(event){
+                                    var row = $(this)[0].dataset
+                                    var test_id = row.test_id
+                                    var suite_id = row.suite_id
+                                    render_modal(test_id, suite_id)
+                                })
+                            }
+                            
+                            register_tr_clicks()
+                            $("#table_results").on( 'draw.dt', function () {
+                                console.log("table redrawn")
+                                register_tr_clicks()
+                            });
+
+                            function render_modal(test_id, suite_id){
+                                var status = database_lol.tests[test_id]["status"]
+                                var name = database_lol.tests[test_id]["name"]
+                                var suite = database_lol.suites[suite_id]["name"]
+                                var module = database_lol.suites[suite_id]["module"]
+                                
+                                $("#test_name").html("<span data-tooltip="+module+"."+suite+"."+name+"() class='tooltipped'><i class='material-icons'>near_me</i> <b>"+name+"()</b></span>")
+                                
+                                var suite_metrics_html = ""
+                                var suite_metrics = database_lol.suites[suite_id].metrics
+                                for(index in suite_metrics){
+                                    var data = suite_metrics[index]
+                                    suite_metrics_html += '<div class="col s12 m6 l6 xl3">'                                
+                                    suite_metrics_html += '<div class="card blue-grey darken-3 absolute_cards">'                                
+                                    suite_metrics_html += '<div data-position="bottom" data-tooltip="This metrics show data for the entire suite: '+suite+' and not just for this test case" class="tooltipped card-content" style="color: #bbc3c7;">'
+                                    suite_metrics_html += '<span>Performance</span>'                                
+                                    suite_metrics_html += '<span class="card-title">@'+index+'</span>'                                
+                                    suite_metrics_html += '<div class="modal_absolute_value">avg <b class="right">'+data.avg+'</b></div>'
+                                    suite_metrics_html += '<div class="modal_absolute_value">median <b class="right">'+data.median+'</b></div>'
+                                    suite_metrics_html += '<div class="modal_absolute_value">min <b class="right">'+data.minimum+'</b></div>'
+                                    suite_metrics_html += '<div class="modal_absolute_value">max <b class="right">'+data.maximum+'</b></div>'
+                                    suite_metrics_html += '<div class="modal_absolute_value">total <b class="right">'+data.total+'</b></div>'
+                                    suite_metrics_html += '<div class="modal_absolute_value">executions <b class="right">'+data.executions+'</b></div>'
+                                    suite_metrics_html += '<div class="modal_absolute_value">failures <b class="right">'+data.failures+'</b></div>'
+                                    suite_metrics_html += '</div></div></div>'                                
+                                }
+                                $("#suite_metrics").html(suite_metrics_html)
+                                
+                                var inject_html = ""
+                                var data = database_lol.tests[test_id].metrics
+                                var distinct_index = 0
+                                
+                                for(class_param in data){
+                                    var class_data = data[class_param]
+                                    distinct_index += 1
+                                    for(test_param in class_data){
+                                        distinct_index += 1
+                                        
+                                        var test_data = class_data[test_param]
+                                        
+                                        var actual_suite_param = test_data.class_param
+                                        if(actual_suite_param == null) actual_suite_param = "N/A"
+                                        else actual_suite_param = class_param
+                                        
+                                        var actual_test_param = test_data.param
+                                        if(actual_test_param == null) actual_test_param = "N/A"
+                                        else actual_test_param = test_param
+                                        
+                                        var status = test_data.status
+                                        var retry = test_data.retry
+                                        var params_total = test_data.params_total
+                            
+                                        var params_ul = '<li class="bg">'
+                            
+                                        params_ul += '<div class="collapsible-header bg">'
+                                            params_ul += '<div class="col xl1 badge_value"><span class="badge '+status+'">'+status+'</span></div>'
+                                            params_ul += '<div class="col xl1 badge_value"><span class="badge info-badge">'+params_total+'</span></div>'
+                                            params_ul += '<div class="col xl10">'
+                                                params_ul += '<div data-position="bottom" class="col xl6 parameter"><a data-tooltip="Copy class parameters" class="tooltipped waves-effect copy_icon"><i data-tcopy="suite_param_'+distinct_index+'" class="material-icons tiny right">content_copy</i></a>Class parameter: <b><span id="suite_param_'+distinct_index+'" class="tooltipped" data-tooltip="'+actual_suite_param+'">'+actual_suite_param+'</span></b></div>'
+                                                params_ul += '<div data-position="bottom" class="col xl6 parameter"><a data-tooltip="Copy test parameters" class="tooltipped waves-effect copy_icon"><i data-tcopy="test_param_'+distinct_index+'" class="material-icons tiny right">content_copy</i></a>Test parameter: <b><span id="test_param_'+distinct_index+'" class="tooltipped" data-tooltip="'+actual_test_param+'">'+actual_test_param+'</span></b></div>'
+                                            params_ul += '</div>'
+                                        params_ul += '</div>'    
+                                        
+                                        params_ul += '<div class="collapsible-body">'
+                                        
+                                        var details_ul = '<ul class="collapsible expandable">'
+                                        for(index in test_data.performance){
+                                            distinct_index += 1
+                                            var attempt = parseInt(index) + 1
+                                            
+                                            var beforeTestTraceback = test_data.beforeTest.tracebacks[index]
+                                            var afterTestTraceback = test_data.afterTest.tracebacks[index]
+                                            var testTraceback = test_data.tracebacks[index]
+                                            
+                                            var beforeTestDuration = test_data.beforeTest.performance[index]
+                                            var testDuration = test_data.performance[index]
+                                            var afterTestDuration = test_data.afterTest.performance[index]
+                                            
+                                            var beforeTestStatus = "N/A"
+                                            if(beforeTestTraceback == null && beforeTestDuration != null) beforeTestStatus = "OK"
+                                            else if(beforeTestTraceback){
+                                                if(beforeTestTraceback.includes("AssertionError")) beforeTestStatus = "Fail"
+                                                else beforeTestStatus = "Error"
+                                            }
+
+                                            var afterTestStatus = "N/A"
+                                            if(afterTestTraceback == null && afterTestDuration != null){
+                                                if (["N/A", "OK"].includes(beforeTestStatus)) afterTestStatus = "OK"
+                                            }
+                                            else if(afterTestTraceback){
+                                                if(afterTestTraceback != afterTestStatus){
+                                                    if(afterTestTraceback.includes("AssertionError")) afterTestStatus = "Fail"
+                                                    else afterTestStatus = "Error"
+                                                }
+                                            }
+                                            
+                                             var new_li = '<li>'
+                                                new_li += '<div class="collapsible-header attempt-header">'
+                                                    new_li += '<div class="col s1 m1 l1 xl1">'
+                                                        new_li += '<i class="material-icons">fingerprint</i>'
+                                                    new_li += '</div>'
+                                                    new_li += '<div class="col s11 m11 l11 xl11">'
+                                                        new_li += '<div class="col s3 m3 l3 xl3">'
+                                                            new_li += '<span>Attempt: <span class="badge info-badge">'+attempt+'</span></span>'
+                                                        new_li += '</div>'
+                                                        new_li += '<div class="col s3 m3 l3 xl3">'
+                                                            new_li += '<span>Runtime: <span data-position="bottom" class="badge info-badge">'+testDuration+'</span></span>'
+                                                        new_li += '</div>'
+                                                        new_li += '<div class="col s3 m3 l3 xl3">'
+                                                            new_li += '<span>@beforeTest: <span class="badge info-badge">'+beforeTestStatus+'</span></span>'
+                                                        new_li += '</div>'
+                                                        new_li += '<div class="col s3 m3 l3 xl3">'
+                                                            new_li += '<span>@afterTest: <span class="badge info-badge">'+afterTestStatus+'</span></span>'
+                                                        new_li += '</div>'
+                                                    new_li += '</div>'
+                                                new_li += '</div>'
+                                                
+                                                if(beforeTestTraceback == null) beforeTestTraceback = "OK"
+                                                if(testTraceback == null) testTraceback = "OK"
+                                                if(afterTestTraceback == null) afterTestTraceback = "OK"
+                                                new_li += '<div class="collapsible-body">'
+                                                    var height = 150
+                                                    var color = '#fd5858'
+                                                    if(beforeTestTraceback == 'OK'){
+                                                        height = 40
+                                                        color = '#10d478' 
+                                                    }
+                                                    if(beforeTestDuration != null){
+                                                        new_li += '<div class="trace-label"><span>@beforeTest</span></div>'
+                                                        new_li += '<div class="traceback"><textarea disabled style="overflow: auto; color: '+color+'; height: '+height+'px;" class="materialize-textarea">'+beforeTestTraceback+'</textarea></div>'
+                                                        new_li += '<div class="right runtime-label"><span class="right">'+beforeTestDuration+'</span></div>'
+                                                        new_li += '<br>'
+                                                    }
+                                                    height = 150
+                                                    color = '#fd5858'
+                                                    if(testTraceback == 'OK'){
+                                                        height = 40
+                                                        color = '#10d478' 
+                                                    }
+                                                    new_li += '<div class="trace-label"><span>@test</span></div>'
+                                                    new_li += '<div class="traceback"><textarea id="trace'+distinct_index+'" disabled style="overflow: auto; color: '+color+'; height: '+height+'px;" class="materialize-textarea">'+testTraceback+'</textarea></div>'
+                                                    new_li += '<div class="right runtime-label"><span class="right">'+testDuration+'</span></div>'
+                                                    new_li += '<br>'
+                                                    height = 150
+                                                    color = '#fd5858'
+                                                    if(afterTestTraceback == 'OK'){
+                                                        height = 40
+                                                        color = '#10d478' 
+                                                    }
+                                                    if(afterTestDuration != null){
+                                                        new_li += '<div class="trace-label"><span>@afterTest</span></div>'
+                                                        new_li += '<div class="traceback"><textarea disabled style="overflow: auto; color: '+color+'; height: '+height+'px;" class="materialize-textarea">'+afterTestTraceback+'</textarea></div>'
+                                                        new_li += '<div class="right runtime-label"><span class="right">'+afterTestDuration+'</span></div>'
+                                                        new_li += '<br>'
+                                                    }
+                                                new_li += '</div>'
+                                             new_li += '</li>'
+                                             details_ul += new_li
+                                        }
+                                        details_ul += '</ul>'
+                                        params_ul += details_ul
+                                        params_ul += '</div>'
+                                        params_ul += '</li>'
+                                        inject_html += params_ul
+                                    }
+                                }
+                                $("#test_details").html(inject_html)
+                                $('.collapsible.expandable').collapsible();
+                                $('.tooltipped').tooltip();
+                                registerCopy();
+                            }
+
+                        });
+                    </script>
+                </div>
+               </div>
+                <div class="fixed-action-btn horizontal">
+                    <a class="btn-floating btn-large waves-effect waves-light orange darken-4 modal-trigger" 
+                    href="#developerModal"><i class="material-icons">favorite</i></a>
+                </div>
+                <script>
+                    $(document).ready(function(){
+                        $('#developerModal').modal();
+                    });
+                </script>
+                <div id="developerModal" class="modal">
+                    <div class="modal-content" style="color: black;">
+                      <h4>Greetings!</h4>
+                        <p>Some features are not yet finished. 
+                           I'm <a rel="noopener" href="https://www.linkedin.com/in/arturspirin/" target="_blank">
+                           Artur <i class='fas fa-external-link-alt'></i></a> by the way, the developer of
+                           <a href="https://www.test-junkie.com/" target="_blank" rel="noopener">Test Junkie 
+                           <i class='fas fa-external-link-alt'></i></a></p>
+                        <p>It took a lot of effort, all my free time outside my day job, and many sleepless
+                            nights to get this project to this point, that includes styling and doing data
+                            processing in order to render all those charts and tables. I have been motivated by
+                            the idea that it may become useful for testers, QA managers, QA team leads, and
+                            even project managers and developers. Thus I open sourced it.</p>
+                        <p>Ask yourself if all the effort I put in and the benefits Test Junkie brings to you
+                            and/or your company (if any) are worth a donation or 2 minutes of your time.</p>
+                        <p>Ways you can help:</p>
+                        <ol>
+                            <li>The biggest thing you can do for me is 
+                                <a class="github-button" href="https://github.com/ArturSpirin/test_junkie" 
+                                data-size="large" data-show-count="true" aria-label="Star ArturSpirin/test_junkie on 
+                                GitHub">Star</a> the project on GitHub and share it on social media, with your friend 
+                                and/or colleagues.</li>
+                            <li>Write me a message on <a rel="noopener" href="https://www.linkedin.com/in/arturspirin/"
+                                target="_blank">Linked In <i class='fas fa-external-link-alt'></i></a> and tell me 
+                                about your experience with Test Junkie.</li>
+                            <li>If you can afford, you can donate through
+                                <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=FJPYWX5B776YS
+                                &currency_code=USD&source=url" target="_blank" rel="noopener">PayPal 
+                                <i class='fas fa-external-link-alt'></i></a>. Every penny donated motivates me more and 
+                                more to spend time on this project.</li>
+                            <li>You can also back me on
+                                <a rel="noopener" href="https://www.patreon.com/join/arturspirin/" target="_blank">
+                                Patreon <i class='fas fa-external-link-alt'></i></a> on behalf of your company and 
+                                get some benefits by doing so.</li>
+                        </ol>
+                        <p>Happy testing!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                    </div>
+                    <script async defer src="https://buttons.github.io/buttons.js"></script>
+                </div>
+               
+                        <script>
+                            var database_lol = {"suites": {"1": {"name": "NacSplitProfit751010", "module": "__main__", "metrics": {"beforeTest": {"executions": 0, "failures": 0, "median": "N/A", "avg": "N/A", "total": "N/A", "minimum": "N/A", "maximum": "N/A"}, "afterTest": {"executions": 0, "failures": 0, "median": "N/A", "avg": "N/A", "total": "N/A", "minimum": "N/A", "maximum": "N/A"}, "beforeClass": {"executions": 1, "failures": 1, "median": "2.56s", "avg": "2.56s", "total": "2.56s", "minimum": "2.56s", "maximum": "2.56s"}, "afterClass": {"executions": 0, "failures": 0, "median": "N/A", "avg": "N/A", "total": "N/A", "minimum": "N/A", "maximum": "N/A"}}}}, "tests": {}}
+                            function registerCopy(){
+                                $(".copy_icon").on("click", function(event){
+                                    event.stopPropagation();
+                                    var copy_target = event.target.dataset.tcopy
+                                    var data_element = document.getElementById(copy_target);
+                                    if(data_element.tagName == "textarea") var val = data_element.value
+                                    else var val = data_element.innerHTML
+                                    
+                                    var $temp = $("<input>");
+                                    $("body").append($temp);
+                                    $temp.val(val).select();
+                                    document.execCommand("copy");
+                                    $temp.remove();
+                                    
+                                    Materialize.toast('Copied!', 2000)
+                                });
+                            };
+                        </script>
+                    </body>
+                </html> 
+               
